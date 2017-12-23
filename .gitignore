@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# self define
+.idea
+log/
+test/
+Models/*
+*.log
+
+
 # C extensions
 *.so
 
