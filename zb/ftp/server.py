@@ -24,13 +24,10 @@ M 	文件传输模式（通过FTP设置文件权限 ）
 ======================================================================================
 """
 
-
 from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.handlers import FTPHandler, ThrottledDTPHandler
 from pyftpdlib.servers import FTPServer
 import logging
-
-
 
 """
 ======================================================================================
@@ -40,14 +37,16 @@ setting
 
 
 class settings:
-    ip = '10.38.75.249'
+    ip = None
+    if not ip:
+        ip
 
     port = '21'
-    
+
     user_list = [
-	    # 用户名   密码       权限       目录
-	    ['root', '12345', 'elradfmwM', 'C:\ZB'],
-	]
+        # 用户名   密码       权限       目录
+        ['root', '12345', 'elradfmwM', 'C:\ZB'],
+    ]
 
     # 上传速度  300kb/s
     max_upload = 3000 * 1024
@@ -66,7 +65,7 @@ class settings:
 
     # 是否开启匿名访问 on|off
     enable_anonymous = 'off'
-    
+
     # 匿名用户目录
     anonymous_path = ''
 
@@ -77,8 +76,6 @@ class settings:
 
     # 欢迎信息
     welcome_msg = 'Welcome to my ftp'
-
-
 
 
 def ftp_server():

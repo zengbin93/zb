@@ -65,7 +65,7 @@ class EmailSender:
             print('目前仅支持163和qq邮箱！')
 
 
-    def construct_msg(self, to, subject, content, files=None):
+    def _construct_msg(self, to, subject, content, files=None):
         """构造email信息
 
         parameters
@@ -100,9 +100,16 @@ class EmailSender:
 
     @retry(stop_max_attempt_number=6)
     def send_email(self, to, subject, content, files=None):
-        """登录邮箱，发送msg到指定联系人"""
+        """登录邮箱，发送msg到指定联系人
+
+        :param to: str: 收件人邮箱
+        :param subject: str: 主题
+        :param content: str: 内容
+        :param files:  list: 附件列表
+        :return: None
+        """
         smtp = self.smtp
-        msg = EmailSender.construct_msg(self, to, subject, content, files=files)
+        msg = EmailSender._construct_msg(self, to, subject, content, files=files)
         smtp.sendmail(self.from_, to, str(msg))
 
 

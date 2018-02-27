@@ -9,6 +9,9 @@ log/
 test/
 Models/*
 *.log
+*.pkl
+wx_bot/msgs/
+
 
 
 # C extensions
