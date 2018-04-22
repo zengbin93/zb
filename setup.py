@@ -5,21 +5,18 @@ setup(
     name="zb",
     version=zb.__version__,
     keywords=("zb", "tool", "algorithm"),
-    description="Personal Package",
+    description="My Personal Package",
     long_description="Personal established tools and implement of algorithm. ",
     license="Apache-2.0",
 
     url="https://github.com/zengbin93/zb",
-    author="zengbin",
+    author="zengbin93",
     author_email="zeng_bin8888@163.com",
 
-    packages=find_packages(),
-    package_data={
-    },
+    packages=find_packages(exclude=['code_set', 'test', 'images']),
     include_package_data=True,
-    install_requires=["requests", "pandas", "click", 'retrying'],
-
-    entry_points=dict(console_scripts=[
-        ''
-    ]),
+    install_requires=[
+        "requests", "pandas", "click", 'retrying',
+        "numpy",
+    ]
 )
