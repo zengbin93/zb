@@ -49,7 +49,7 @@ def legitimize(text):
 
 
 def modify_content(file, old, new):
-    """替换文件中的指定内容"""
+    """替换文件中的指定内容，逐行进行"""
     try:
         lines = open(file, 'r').readlines()
         f_len = len(lines) - 1
@@ -89,10 +89,10 @@ def batch_del_file(path, in_name=None, yn=None):
             os.remove(file)
             print('已删除：', file)
     else:
-        print('文件没有删除')
+        print('没有任何文件被删除！')
 
 
-def batch_move_file(path, dest, in_name=None):
+def batch_move_file(path, dest, in_name=None, copy=True):
     """将path目录下文件名中包含的in_name的文件移动到dest目录下
 
     parameters
@@ -105,18 +105,25 @@ def batch_move_file(path, dest, in_name=None):
     ------------
     # 将path目录下的所有txt文件转移到dest目录
     move_file(path, dest, in_name='.txt')
+    默认会覆盖目标目录下的同名文件
     """
     assert os.path.exists(path), '%s 文件夹不存在' % path
     assert os.path.exists(dest), '%s 文件夹不存在' % dest
+    if copy:
+        mv = shutil.copy
+    else:
+        mv = shutil.move
+
     if in_name is None:
         file_list = os.listdir(path)
     else:
         file_list = [i for i in os.listdir(path) if in_name in i]
+
     if len(file_list) != 0:
         for file in file_list:
             f = os.path.join(path, file)
             d = os.path.join(dest, file)
-            shutil.move(f, d)
+            mv(f, d)
             print('已转移：%s' % f)
     else:
         if in_name is None:
@@ -125,7 +132,17 @@ def batch_move_file(path, dest, in_name=None):
             print('%s 中没有包含【 %s 】的文件' % (path, in_name))
 
 
-# TODO(ZB):创建一个批量复制指定文件（支持正则匹配）的函数
+def batch_rename_file(path, f, t):
+    """根据replaces中定义的规则，批量重命名"""
+    files = os.listdir(path)
+    for file in files:
+        if f in file:
+            new_fn = file.replace(f, t)
+            old = os.path.join(path, file)
+            new = os.path.join(path, new_fn)
+            os.rename(old, new)
+
+
 def make_zip(folder_path, output_filename):
     """将目录中除zip之外的文件打包成zip文件(包括子文件夹)
     空文件夹不会被打包

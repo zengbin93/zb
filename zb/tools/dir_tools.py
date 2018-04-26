@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
+import os
+import shutil
+
 
 def clean_folder(folder):
     """清空文件夹，并确保文件夹存在"""
-    import os
-    import shutil
     if os.path.exists(folder):
         shutil.rmtree(folder)
     os.mkdir(folder)
 
 def insure_folder_exists(folder):
     """确保文件夹存在"""
-    import os
     if not os.path.exists(folder):
         os.mkdir(folder)
 

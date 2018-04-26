@@ -10,7 +10,7 @@ setup(
     license="Apache-2.0",
 
     url="https://github.com/zengbin93/zb",
-    author="zengbin93",
+    author=zb.__author__,
     author_email="zeng_bin8888@163.com",
 
     packages=find_packages(exclude=['code_set', 'test', 'images']),
@@ -18,5 +18,10 @@ setup(
     install_requires=[
         "requests", "pandas", "click", 'retrying',
         "numpy",
-    ]
+    ],
+    entry_points={
+        "console_scripts": [
+            "zb=zb.cli:zb"
+        ]
+    }
 )
