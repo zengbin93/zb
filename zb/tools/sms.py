@@ -20,7 +20,7 @@ import os
 import requests
 
 @retry(stop_max_attempt_number=6)
-def push_sms(title, content, key='SCU10748T12f471f07094648d297222fc649e374d598bf38bc81fd'):
+def push_sms(title, content, key):
     """使用server酱推送消息到微信"""
     # post方法推送
     url = 'https://sc.ftqq.com/%s.send' % key
