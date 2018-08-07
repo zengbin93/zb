@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import click
+import time
 
 
 @click.group()
 def zb():
     pass
+
 
 @zb.command()
 @click.option('-p', '--path', help="文件路径")
@@ -16,6 +18,12 @@ def brf(path, f, t):
     from .tools.file_tools import batch_rename_file
     batch_rename_file(path, f, t)
 
+
+@zb.command()
+def ts():
+    """timestamp | 查看当前时间戳"""
+    print("当前时间戳：", time.time())
+
+
 if __name__ == "__main__":
     zb()
-

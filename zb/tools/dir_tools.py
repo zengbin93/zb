@@ -9,10 +9,12 @@ def clean_folder(folder):
         shutil.rmtree(folder)
     os.mkdir(folder)
 
+
 def insure_folder_exists(folder):
     """确保文件夹存在"""
     if not os.path.exists(folder):
         os.mkdir(folder)
+
 
 # def get_file_list(folder_path, form='view', graph=True):
 def get_file_list(folder_path):
@@ -31,12 +33,9 @@ def get_file_list(folder_path):
         x = ''
         for file in files:
             if root != x:  # 如果不是同一个root，换行
-                f.write('\n' + root.replace(folder_path+'\\', '') + '\n')
+                f.write('\n' + root.replace(folder_path + '\\', '') + '\n')
             file_1 = os.path.join(root, file)
-            file_2 = file_1.replace(root+'\\', '')
+            file_2 = file_1.replace(root + '\\', '')
             f.write('  |-- ' + file_2 + '\n')
             x = root
     f.close()
-
-
-

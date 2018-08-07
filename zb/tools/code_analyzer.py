@@ -19,16 +19,19 @@ import os
 py_path = r'C:\Anaconda3\Lib\zb_CodeSet\local_use'
 fn_pys = [os.path.join(py_path, fn) for fn in os.listdir(py_path)]
 
+
 def read_py(fn_py):
     """将py文件读入"""
     with open(fn_py, 'r', encoding='utf-8') as pyf:
         lines = pyf.readlines()
     return lines
 
+
 def save_py(save_lines, fn_py):
     """保存处理之后的代码"""
     with open(fn_py, 'w', encoding='utf-8') as pyf:
         pyf.writelines(save_lines)
+
 
 def del_annotation(py_lines):
     """删除以#开头的单行注释"""

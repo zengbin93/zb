@@ -7,7 +7,7 @@ Logistic Regression
 
 import numpy as np
 import matplotlib.pyplot as plt
-# import self-defined functions
+
 from zb.algorithms.functions import sigmoid
 
 
@@ -24,7 +24,7 @@ def initialize_with_zeros(dim):
     w       initialized vector of shape (dim, 1)
     b       initialized scalar (corresponds to the bias)
     """
-    w = np.zeros(dim, 1)
+    w = np.zeros((dim, 1))
     b = 0
     return w, b
 

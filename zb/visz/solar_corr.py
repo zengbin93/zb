@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ————————————————————————————————————————————————————————————————————————————————————————
-https://www.oreilly.com/learning/a-new-visualization-to-beautifully-explore-correlations
+https://www.oreilly.com/learning/a-new-visz-to-beautifully-explore-correlations
 太阳系相关性图
 
 ————————————————————————————————————————————————————————————————————————————————————————

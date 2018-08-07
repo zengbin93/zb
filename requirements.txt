@@ -1,1 +1,9 @@
 pyftpdlib
+wxpy
+pandas
+click
+docx
+requests
+retrying
+scikit-learn
+numpy

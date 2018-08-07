@@ -13,9 +13,3 @@ def load_iris():
     iris = pd.read_csv(path)
     return iris
 
-def load_milk_productions():
-    # Monthly milk production: pounds per cow. Jan 62 – Dec 75[Edit]
-	path = 'milk-productions.csv'
-    mps = pd.read_csv(path)
-    return mps
-

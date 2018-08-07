@@ -152,6 +152,7 @@ def make_zip(folder_path, output_filename):
     make_zip('results','zips//招标信息结果_2017-05-09.zip')
     """
     cwd = os.getcwd()
+
     # 获取需要打包的文件列表
     file_lists = []
     for root, dirs, files in os.walk(folder_path):
@@ -159,11 +160,13 @@ def make_zip(folder_path, output_filename):
             file_1 = os.path.join(root, file).replace(folder_path + '/', '')
             if 'zip' not in file_1:
                 file_lists.append(file_1)
+
     # 将文件列表打包成zip
     os.chdir(folder_path)
     with zipfile.ZipFile(output_filename, 'w') as myzip:
         for file in file_lists:
             myzip.write(file)
+
     # 将工作目录切换回原始
     os.chdir(cwd)
 
@@ -196,4 +199,8 @@ def read_file(file, encoding='utf-8'):
         raise ValueError("file is empty!")
 
 
+def empty_file(file):
+    """empty file"""
+    with open(file, 'w', encoding='utf-8') as f:
+        f.truncate()
 

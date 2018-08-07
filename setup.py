@@ -5,7 +5,7 @@ setup(
     name="zb",
     version=zb.__version__,
     keywords=("zb", "tool", "algorithm"),
-    description="My Personal Package",
+    description="Personal Package of ZengBin",
     long_description="Personal established tools and implement of algorithm. ",
     license="Apache-2.0",
 
@@ -17,7 +17,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "requests", "pandas", "click", 'retrying',
-        "numpy",
+        "numpy", "wxpy"
     ],
     entry_points={
         "console_scripts": [

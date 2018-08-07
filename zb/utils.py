@@ -1,5 +1,29 @@
 # -*- coding: utf-8 -*-
 
+import functools
+import time
+
+
+# --------------------------------------------------------------------
+
+def elapsed(func):
+    """A decorator for calculating time elapsed when execute func"""
+
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        start = time.time()
+        print('Running %s() ...' % func.__name__)
+        res = func(*args, **kw)
+        end = time.time()
+        print('Function %s() running elapsed %.2f s' %
+              (func.__name__, end - start))
+        return res
+
+    return wrapper
+
+
+# --------------------------------------------------------------------
+
 def create_logger(log_file, name='logger', cmd=True):
     """define a logger for your program
 

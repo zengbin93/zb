@@ -1,16 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""
-preprocessing data for time series
-===================================================================================
-
-
-
-
-
-===================================================================================
-"""
-
 import pandas as pd
 import numpy
 from sklearn.preprocessing import MinMaxScaler
