@@ -171,13 +171,16 @@ def make_zip(folder_path, output_filename):
     os.chdir(cwd)
 
 
-def create_file(file, content=None, mode="a", encoding='utf-8'):
+# write, read, empty
+# --------------------------------------------------------------------
+
+def write_file(file, content=None, mode="a", encoding='utf-8'):
     with open(file, mode, encoding=encoding) as f:
         if isinstance(content, str):
             content += "\n"
             f.write(content)
         elif isinstance(content, list):
-            content = [i.strip("\n")+'\n' for i in content]
+            content = [i.strip("\n") + '\n' for i in content]
             f.writelines(content)
         elif content is None:
             return
@@ -185,12 +188,8 @@ def create_file(file, content=None, mode="a", encoding='utf-8'):
             raise ValueError("If content is not None, it must be list or str!")
 
 
-def write_file(file, content, mode='a', encoding='utf-8'):
-    create_file(file, content=content, mode=mode, encoding=encoding)
-
-
-def read_file(file, encoding='utf-8'):
-    with open(file, 'r', encoding=encoding) as f:
+def read_file(file, mode="r", encoding='utf-8'):
+    with open(file, mode, encoding=encoding) as f:
         lines = f.readlines()
         lines = [line.strip("\n") for line in lines]
     if len(lines) > 0:
@@ -199,8 +198,7 @@ def read_file(file, encoding='utf-8'):
         raise ValueError("file is empty!")
 
 
-def empty_file(file):
+def empty_file(file, mode="w", encoding='utf-8'):
     """empty file"""
-    with open(file, 'w', encoding='utf-8') as f:
+    with open(file, mode, encoding=encoding) as f:
         f.truncate()
-
