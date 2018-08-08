@@ -17,7 +17,7 @@ step 5. 编写预测（prediction）函数
 """
 
 import numpy as np
-from zb_CodeSet.Algorithms.functions import sigmoid
+from ..functions import sigmoid
 
 
 def layer_sizes(X, Y):

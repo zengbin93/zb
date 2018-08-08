@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
-import pandas as pd
-import numpy as np
-from scipy import stats
+
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-from statsmodels.graphics.api import qqplot
-from zb_CodeSet.DataSet.load_dataset import load_monthly_milk_production
+from zb.DataSet.load_dataset import load_monthly_milk_production
 
 
 # step1. 输入数据，查看数据

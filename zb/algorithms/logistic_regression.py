@@ -8,7 +8,7 @@ Logistic Regression
 import numpy as np
 import matplotlib.pyplot as plt
 
-from zb.algorithms.functions import sigmoid
+from zb.functions import sigmoid
 
 
 # step 1. initialize parameters with zeros

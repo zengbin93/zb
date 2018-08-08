@@ -4,8 +4,8 @@ import os
 import json
 import requests
 from bs4 import BeautifulSoup
+from urllib.request import urlopen
 import random
-
 
 USER_AGENTS = [
     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
@@ -48,13 +48,16 @@ USER_AGENTS = [
 def get_header():
     return {
         'User-Agent': random.choice(USER_AGENTS),
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept': 'text/html,application/xhtml+xml,'
+                  'application/xml;q=0.9,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5',
         'Connection': 'keep-alive',
         'Accept-Encoding': 'gzip, deflate',
     }
 
 
+# 网络相关
+# --------------------------------------------------------------------
 def network_ready():
     """判断当前网络是否可用"""
     is_connect = os.system('ping wwww.baidu.com')
@@ -87,3 +90,13 @@ def get_self_location():
     location = get_ip_location(ip)
     return location
 
+
+# 文件下载
+# --------------------------------------------------------------------
+def download(url):
+    """输入文件url，下载该文件"""
+    file_name = os.path.split(url)[1]
+    file = urlopen(url)
+    with open(file_name, 'wb') as f:
+        f.write(file.read())
+        print("文件下载成功：%s " % file_name)
