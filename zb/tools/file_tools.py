@@ -2,6 +2,9 @@
 import os
 import shutil
 import zipfile
+from threading import Lock
+
+lock = Lock()
 
 
 def legitimize(text):
@@ -175,6 +178,7 @@ def make_zip(folder_path, output_filename):
 # --------------------------------------------------------------------
 
 def write_file(file, content=None, mode="a", encoding='utf-8'):
+    lock.acquire(blocking=True, timeout=30)
     with open(file, mode, encoding=encoding) as f:
         if isinstance(content, str):
             content += "\n"
@@ -183,15 +187,18 @@ def write_file(file, content=None, mode="a", encoding='utf-8'):
             content = [i.strip("\n") + '\n' for i in content]
             f.writelines(content)
         elif content is None:
-            return
+            pass
         else:
             raise ValueError("If content is not None, it must be list or str!")
+    lock.release()
 
 
 def read_file(file, mode="r", encoding='utf-8'):
+    lock.acquire(blocking=True, timeout=30)
     with open(file, mode, encoding=encoding) as f:
         lines = f.readlines()
         lines = [line.strip("\n") for line in lines]
+    lock.release()
     if len(lines) > 0:
         return lines
     else:
