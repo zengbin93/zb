@@ -17,11 +17,18 @@ setup(
     include_package_data=True,
     install_requires=[
         "requests", "pandas", "click", 'retrying',
-        "numpy", "wxpy", "pdfminer3k"
+        "numpy", "wxpy", "pdfminer3k", 'bs4'
     ],
     entry_points={
         "console_scripts": [
             "zb=zb.cli:zb"
         ]
-    }
+    },
+    classifiers=[
+            'License :: OSI Approved :: Apache Software License',
+            'Programming Language :: Python :: 3',
+            'Programming Language :: Python :: 3.4',
+            'Programming Language :: Python :: 3.5',
+            'Programming Language :: Python :: 3.6',
+        ]
 )
