@@ -10,6 +10,7 @@ class ZbDict(dict):
 
 
 class ZbList(list):
+    """List that can get elements by discrete indices"""
     def __init__(self, *args, **kwargs):
         super(ZbList, self).__init__(*args, **kwargs)
 

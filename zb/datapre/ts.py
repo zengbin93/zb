@@ -4,8 +4,9 @@ import pandas as pd
 import numpy
 from sklearn.preprocessing import MinMaxScaler
 
+
 def timeseries_to_supervised(df, lag=1):
-    columns = [df.shift(i) for i in range(1, lag+1)]
+    columns = [df.shift(i) for i in range(1, lag + 1)]
     columns.append(df)
     df = pd.concat(columns, axis=1)
     df.fillna(0, inplace=True)
@@ -45,5 +46,3 @@ def invert_scale(scaler, X, value):
     array = array.reshape(1, len(array))
     inverted = scaler.inverse_transform(array)
     return inverted[0, -1]
-
-

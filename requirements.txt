@@ -11,3 +11,4 @@ bs4
 selenium
 matplotlib
 tensorflow
+pdfminer3k

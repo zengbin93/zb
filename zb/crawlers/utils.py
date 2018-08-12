@@ -60,11 +60,11 @@ def get_header():
 # --------------------------------------------------------------------
 def network_ready():
     """判断当前网络是否可用"""
-    is_connect = os.system('ping wwww.baidu.com')
-    if is_connect != 0:
-        return False
-    else:
+    response = requests.get("https://wwww.baidu.com")
+    if response.status_code == 200:
         return True
+    else:
+        return False
 
 
 def get_self_ip():
