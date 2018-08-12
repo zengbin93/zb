@@ -119,3 +119,27 @@ class EmailSender:
     def quit(self):
         smtp = self.smtp
         smtp.quit()  # 退出登录
+
+
+def send_email(sender, pw, to, subject, content, files=None, service='163'):
+    """send email, recommended use 163 mailbox service, as it is tested.
+
+    :param sender: str
+        email address of sender
+    :param pw: str
+        password for sender
+    :param to: str
+        email addressee
+    :param subject: str
+        subject of email
+    :param content: str
+        content of email
+    :param files: list
+        path list of attachments
+    :param service: str
+        smtp server address, optional is ['163', 'qq']
+    :return: None
+    """
+    se = EmailSender(from_=sender, pw=pw, service=service)
+    se.send_email(to=to, subject=subject, content=content, files=files)
+    se.quit()
