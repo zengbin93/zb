@@ -60,15 +60,19 @@ class EmailSender:
     def __init__(self, from_, pw, service='qq'):
         self.from_ = from_  # 用于发送email的邮箱
         self.pw = pw  # 发送email的邮箱密码
+        self.service = service
         self.smtp = smtplib.SMTP()
-        if service == 'qq':
+        self.login()
+
+    def login(self):
+        if self.service == 'qq':
             self.smtp.connect('smtp.exmail.qq.com')
             self.smtp.login(self.from_, self.pw)
-        elif service == '163':
+        elif self.service == '163':
             self.smtp.connect('smtp.163.com')
             self.smtp.login(self.from_, self.pw)
         else:
-            print('目前仅支持163和qq邮箱！')
+            raise ValueError('目前仅支持163和qq邮箱！')
 
     def _construct_msg(self, to, subject, content, files=None):
         """构造email信息
@@ -112,13 +116,15 @@ class EmailSender:
         :param files:  list: 附件列表
         :return: None
         """
-        smtp = self.smtp
         msg = EmailSender._construct_msg(self, to, subject, content, files=files)
-        smtp.sendmail(self.from_, to, str(msg))
+        try:
+            self.smtp.sendmail(self.from_, to, str(msg))
+        except:
+            self.login()
+            self.smtp.sendmail(self.from_, to, str(msg))
 
     def quit(self):
-        smtp = self.smtp
-        smtp.quit()  # 退出登录
+        self.smtp.quit()  # 退出登录
 
 
 def send_email(sender, pw, to, subject, content, files=None, service='163'):
