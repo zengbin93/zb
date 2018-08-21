@@ -17,7 +17,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "requests", "pandas", "click", 'retrying',
-        "numpy", "wxpy", "pdfminer3k", 'bs4'
+        "numpy", "wxpy", "pdfminer3k", 'bs4', 'jieba',
     ],
     entry_points={
         "console_scripts": [

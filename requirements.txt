@@ -12,3 +12,5 @@ selenium
 matplotlib
 tensorflow
 pdfminer3k
+jieba
+textrank4zh
