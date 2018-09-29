@@ -15,7 +15,7 @@ def zb():
 @click.option('-t', '--t', help="修改之后的内容")
 def brf(path, f, t):
     """batch_rename_file | 批量重命名文件"""
-    from .tools.file_tools import batch_rename_file
+    from .tools.file import batch_rename_file
     batch_rename_file(path, f, t)
 
 

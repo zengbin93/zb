@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import pickle
 import shutil
 import zipfile
 from threading import Lock
@@ -209,3 +210,18 @@ def empty_file(file, mode="w", encoding='utf-8'):
     """empty file"""
     with open(file, mode, encoding=encoding) as f:
         f.truncate()
+
+
+# pickle
+# --------------------------------------------------------------------
+def save_to_pkl(file, data, protocol=None):
+    if protocol is None:
+        protocol = pickle.HIGHEST_PROTOCOL
+    with open(file, 'wb') as f:
+        pickle.dump(data, f, protocol=protocol)
+
+
+def read_from_pkl(file):
+    with open(file, 'rb') as f:
+        data = pickle.load(f)
+    return data
