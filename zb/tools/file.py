@@ -12,7 +12,7 @@ def legitimize(text):
     """Converts a string to a valid filename.
     """
     import platform
-    os = platform.system()
+    os_ = platform.system()
     # POSIX systems
     text = text.translate({
         0: None,
@@ -20,7 +20,7 @@ def legitimize(text):
         ord('|'): '-',
     })
 
-    if os == 'Windows':
+    if os_ == 'Windows':
         # Windows (non-POSIX namespace)
         text = text.translate({
             # Reserved in Windows VFAT and NTFS
@@ -38,7 +38,7 @@ def legitimize(text):
         })
     else:
         # *nix
-        if os == 'Darwin':
+        if os_ == 'Darwin':
             # Mac OS HFS+
             text = text.translate({
                 ord(':'): '-',
