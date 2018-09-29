@@ -6,14 +6,14 @@ setup(
     version=zb.__version__,
     keywords=("zb", "tool", "algorithm"),
     description="Personal Package of ZengBin",
-    long_description="Personal established tools and implement of algorithm. ",
+    long_description="Personal established tools and implement of algorithm.",
     license="Apache-2.0",
 
     url="https://github.com/zengbin93/zb",
     author=zb.__author__,
     author_email="zeng_bin8888@163.com",
 
-    packages=find_packages(exclude=['code_set', 'test', 'images']),
+    packages=find_packages(exclude=['test', 'images']),
     include_package_data=True,
     install_requires=[
         "requests", "pandas", "click", 'retrying',
