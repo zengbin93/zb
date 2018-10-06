@@ -7,15 +7,15 @@ import time
 # --------------------------------------------------------------------
 
 def elapsed(func):
-    """A decorator for calculating time elapsed when execute func"""
+    """A decorator for calculating time elapsed when execute function"""
 
     @functools.wraps(func)
     def wrapper(*args, **kw):
         start = time.time()
-        print('Running %s() ...' % func.__name__)
+        print('Running `%s()` ...' % func.__name__)
         res = func(*args, **kw)
         end = time.time()
-        print('Function %s() running elapsed %.2f s' %
+        print('Function `%s()` running elapsed %.2f s' %
               (func.__name__, end - start))
         return res
 
