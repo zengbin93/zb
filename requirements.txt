@@ -1,4 +1,3 @@
-pyftpdlib
 wxpy
 pandas
 click

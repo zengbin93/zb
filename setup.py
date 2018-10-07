@@ -19,6 +19,7 @@ setup(
         "requests", "pandas", "click", 'retrying',
         "numpy", "wxpy", "pdfminer3k", 'bs4', 'jieba',
     ],
+    package_data={'': ['*.csv', '*.txt']},
     entry_points={
         "console_scripts": [
             "zb=zb.cli:zb"
