@@ -14,3 +14,4 @@ pdfminer3k
 jieba
 textrank4zh
 six
+pypdf2
