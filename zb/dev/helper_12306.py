@@ -38,7 +38,7 @@ class TicketQuery:
         self._parser()
 
     def __repr__(self):
-        return "< query ticket: %s - %s - %s >" % self.raw
+        return "<query ticket: %s - %s - %s>" % self.raw
 
 
 
