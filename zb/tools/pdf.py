@@ -79,3 +79,4 @@ def merge_pdf(pdf_files, output_file):
         f.close()
     merger.write(output_file)
     merger.close()
+
