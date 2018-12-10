@@ -6,7 +6,7 @@ setup(
     version=zb.__version__,
     keywords=("zb", "tool", "algorithm"),
     description="Personal Package of ZengBin",
-    long_description="Personal established tools and implement of algorithm.",
+    long_description="Personal tools and algorithms.",
     license="Apache-2.0",
 
     url="https://github.com/zengbin93/zb",
@@ -16,8 +16,7 @@ setup(
     packages=find_packages(exclude=['test', 'images']),
     include_package_data=True,
     install_requires=[
-        "requests", "pandas", "click", 'retrying',
-        "numpy", "wxpy", "pdfminer3k", 'bs4', 'jieba',
+        "requests", "pandas", "click", "numpy", 'bs4', 'jieba',
     ],
     package_data={'': ['*.csv', '*.txt']},
     entry_points={
@@ -31,5 +30,6 @@ setup(
             'Programming Language :: Python :: 3.4',
             'Programming Language :: Python :: 3.5',
             'Programming Language :: Python :: 3.6',
+            'Programming Language :: Python :: 3.7',
         ]
 )

@@ -9,7 +9,6 @@ https://www.xinshipu.com/
 import requests
 from bs4 import BeautifulSoup
 import re
-import time
 from urllib.parse import urljoin
 
 from zb.crawlers.utils import get_header

@@ -25,5 +25,12 @@ def ts():
     print("当前时间戳：", time.time())
 
 
+@zb.command()
+def km():
+    """keyboard monitor | 键盘记录器"""
+    from zb.dev.keyboard import run_keyboard_monitor
+    run_keyboard_monitor()
+
+
 if __name__ == "__main__":
     zb()

@@ -43,3 +43,7 @@ class KeyboardMonitor:
 KeyboardController = Controller
 
 
+def run_keyboard_monitor():
+    km = KeyboardMonitor()
+    km.run()
+
