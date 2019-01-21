@@ -3,9 +3,8 @@
 Send Message Service
 ====================================================================
 """
-
+import traceback
 import requests
-from retrying import retry
 import os
 import smtplib
 from email.mime.application import MIMEApplication
@@ -13,7 +12,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-@retry(stop_max_attempt_number=6)
 def server_chan_push(title, content, key=None):
     """使用server酱推送消息到微信，关于server酱，
     请参考：http://sc.ftqq.com/3.version
@@ -33,7 +31,6 @@ def server_chan_push(title, content, key=None):
     requests.post(url, data={'text': title, 'desp': content})
 
 
-@retry(stop_max_attempt_number=6)
 def bear_push(title, content, send_key=None):
     """使用PushBear推送消息给所有订阅者微信，关于PushBear，
     请参考：https://pushbear.ftqq.com/admin/#/
@@ -106,7 +103,6 @@ class EmailSender:
 
         return msg
 
-    @retry(stop_max_attempt_number=6)
     def send_email(self, to, subject, content, files=None):
         """登录邮箱，发送msg到指定联系人
 
@@ -120,6 +116,7 @@ class EmailSender:
         try:
             self.smtp.sendmail(self.from_, to, str(msg))
         except:
+            traceback.print_exc()
             self.login()
             self.smtp.sendmail(self.from_, to, str(msg))
 
