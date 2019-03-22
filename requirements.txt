@@ -3,7 +3,6 @@ pandas
 click
 docx
 requests
-retrying
 scikit-learn
 numpy
 bs4

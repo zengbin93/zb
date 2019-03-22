@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+"""
+
+Reference:
+1. https://github.com/jasonwbw/DensityPeakCluster
+2. Rodriguez, A. & Laio, A. Clustering by fast search and
+   find of density peaks. Science 344, 1492–1496 (2014).
+====================================================================
+"""
 from copy import deepcopy
 import numpy as np
 import matplotlib
