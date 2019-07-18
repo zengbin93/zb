@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import os
 import json
 import requests
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
 import random
 
 USER_AGENTS = [
@@ -56,6 +54,40 @@ def get_header():
     }
 
 
+def get_raw_response(raw):
+    """从浏览器复制访问页面的原始请求中获取数据
+
+    :param raw: str
+        从浏览器复制的访问雪球的原始请求，包含cookies等信息，如：
+        raw =
+            GET /stock/screener/screen.json?category=SH&exchange=&areacode=&indcode=&orderby=symbol&order=desc&current=ALL&pct=ALL&page=1&mc=0_30&eps.20180331=0.2_6.77&_=1532157090470 HTTP/1.1
+            Host: xueqiu.com
+            Connection: keep-alive
+            Accept: application/json, text/javascript, */*; q=0.01
+            cache-control: no-cache
+            DNT: 1
+            X-Requested-With: XMLHttpRequest
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+            Referer: https://xueqiu.com/hq/screener
+            Accept-Encoding: gzip, deflate, br
+            Accept-Language: en-US,en;q=0.9
+            Cookie: device_id=93f4ed2cb55c692c95f053da19015b52; s=fq11y14kj3; bid=e0902c871217c79df259eb5d83f46eae_j950845q; _ga=GA1.2.1448042712.1508812875; __utmz=1.1527436687.45.17.utmcsr=sogou.com|utmccn=(referral)|utmcmd=referral|utmcct=/link; __utma=1.1448042712.1508812875.1528039186.1529730232.49; remember=1; remember.sig=K4F3faYzmVuqC0iXIERCQf55g2Y; xq_a_token=6ff26751fa685eb1ceab508fcb1c6b0556ef650a; xq_a_token.sig=wSoXzThiLbzH4mXexFY2U11fUzM; xq_r_token=5a288141cd3742deacc30e09eda6d0de65501ced; xq_r_token.sig=Hp0vJJ_CRQXm_3ATbMMnyspaIBA; xq_is_login=1; xq_is_login.sig=J3LxgPVPUzbBg3Kee_PquUfih7Q; u=3987902339; u.sig=wHo1L73HiVC2HlUxrHqBNa63rVo; aliyungf_tc=AQAAAO0MKVFvPwIAyD88OjvS/B9ge3BR; Hm_lvt_1db88642e346389874251b5a1eded6e3=1531897634,1531985157,1532156465,1532157061; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1532157061
+
+    :return: response requests.Response
+        原始请求对应返还的数据
+    """
+    raw_req = raw.strip("\n").split("\n")
+    raw_req = [r.strip(" ") for r in raw_req]
+    raw_req = [r for r in raw_req if r != ""]
+    headers = dict()
+    for r in raw_req[1:]:
+        k, v = r.split(": ")
+        headers[k] = v
+    url = "https://" + headers['Host'] + raw_req[0].split(" ")[1]
+    response = requests.get(url, headers=headers)
+    return response
+
+
 # 网络相关
 # --------------------------------------------------------------------
 def network_ready():
@@ -91,12 +123,3 @@ def get_self_location():
     return location
 
 
-# 文件下载
-# --------------------------------------------------------------------
-def download(url):
-    """输入文件url，下载该文件"""
-    file_name = os.path.split(url)[1]
-    file = urlopen(url)
-    with open(file_name, 'wb') as f:
-        f.write(file.read())
-        print("文件下载成功：%s " % file_name)

@@ -6,7 +6,6 @@ __pycache__/
 # self define
 .idea
 log/
-test/
 Models/*
 *.log
 *.pkl

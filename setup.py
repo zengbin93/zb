@@ -17,7 +17,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "requests", "pandas", "click", "numpy", 'bs4', 'jieba',
-        "pypdf2", "pynput", "pdfminer3k"
+        "pypdf2", "pynput"
     ],
     package_data={'': ['*.csv', '*.txt']},
     entry_points={
