@@ -16,8 +16,7 @@ setup(
     packages=find_packages(exclude=['test', 'images']),
     include_package_data=True,
     install_requires=[
-        "requests", "pandas", "click", "numpy", 'bs4', 'jieba',
-        "pypdf2", "pynput"
+        "requests", "pandas", "click", "numpy", 'bs4', 'jieba', "pynput"
     ],
     package_data={'': ['*.csv', '*.txt']},
     entry_points={

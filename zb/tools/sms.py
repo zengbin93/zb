@@ -6,6 +6,7 @@ Send Message Service
 import traceback
 import requests
 import os
+import functools
 import smtplib
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -48,6 +49,31 @@ def bear_push(title, content, send_key=None):
                          "可以到这里创建通道获取：https://pushbear.ftqq.com/admin/#/")
     api = "https://pushbear.ftqq.com/sub"
     requests.post(api, data={'text': title, 'desp': content, "sendkey": send_key})
+
+
+def push2wx(send_key, by="bear"):
+    """装饰器：推送消息到微信
+
+    :param send_key: str
+        用于发送消息的key
+    :param by: str 默认值 bear
+        发送消息的方式，默认是bear，
+        可选值 ['bear', 'server_chan']
+    :return:
+    """
+    def _wrapper(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            title, content = func(*args, **kw)
+            if by == "bear":
+                bear_push(title, content, send_key=send_key)
+            elif by == "server_chan":
+                server_chan_push(title, content, key=send_key)
+            else:
+                raise ValueError("参数by的可选值为 ['bear', 'server_chan']")
+            return title, content
+        return wrapper
+    return _wrapper
 
 
 # 邮件发送器，支持发送附件。
