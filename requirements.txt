@@ -4,4 +4,5 @@ click
 requests
 numpy
 bs4
-
+jieba
+pynput

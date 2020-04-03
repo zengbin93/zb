@@ -76,9 +76,6 @@ def push2wx(send_key, by="bear"):
     return _wrapper
 
 
-# 邮件发送器，支持发送附件。
-# --------------------------------------------------------------------
-
 class EmailSender:
     def __init__(self, from_, pw, service='qq'):
         self.from_ = from_  # 用于发送email的邮箱
