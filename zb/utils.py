@@ -48,7 +48,7 @@ def create_logger(log_file, name='logger', cmd=True):
                                   datefmt='%Y-%m-%d %H:%M:%S')
 
     # file handler
-    fh = logging.FileHandler(log_file)
+    fh = logging.FileHandler(log_file, encoding="utf-8")
     fh.setLevel(logging.DEBUG)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
