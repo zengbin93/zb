@@ -61,7 +61,7 @@ class TfidfDocRank(BaseRank):
 
     def __init__(self, documents, N=10):
         desc = "基于TFIDF的文档重要性排序"
-        super().__init__(name='tfidf_doc_rank', desc=desc)
+        super(TfidfDocRank).__init__(name='tfidf_doc_rank', desc=desc)
         self.documents = documents
         self.N = N
 
