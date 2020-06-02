@@ -5,6 +5,9 @@
 If you are interested in this module, you can install it by `pip install zb`.
 
 
+安装：`pip install zb -U -i https://pypi.python.org/simple`
+
+
 ## Tools
 
 * Modify Dict
