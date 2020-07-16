@@ -24,7 +24,7 @@ def elapsed(func):
 
 # --------------------------------------------------------------------
 
-def create_logger(log_file, name='logger', cmd=True):
+def create_logger(log_file, name='logger', cmd=True, level="info"):
     """define a logger for your program
 
     parameters
@@ -40,8 +40,15 @@ def create_logger(log_file, name='logger', cmd=True):
 
     """
     import logging
+
+    level_map = {
+        "info": logging.INFO,
+        "debug": logging.DEBUG,
+        "error": logging.ERROR,
+    }
+    log_level = level_map.get(level, logging.INFO)
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(log_level)
 
     # set format
     formatter = logging.Formatter('%(asctime)s | %(name)s | %(levelname)s | %(message)s',
@@ -49,14 +56,14 @@ def create_logger(log_file, name='logger', cmd=True):
 
     # file handler
     fh = logging.FileHandler(log_file, encoding="utf-8")
-    fh.setLevel(logging.DEBUG)
+    fh.setLevel(log_level)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
 
     # cmd handler
     if cmd:
         ch = logging.StreamHandler()
-        ch.setLevel(logging.DEBUG)
+        ch.setLevel(log_level)
         ch.setFormatter(formatter)
         logger.addHandler(ch)
 
